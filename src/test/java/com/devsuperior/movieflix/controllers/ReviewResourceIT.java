@@ -14,7 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.devsuperior.movieflix.dto.ReviewDTO;
+import com.devsuperior.movieflix.dto.ReviewDto;
 import com.devsuperior.movieflix.tests.TokenUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -47,7 +47,7 @@ public class ReviewResourceIT {
 
     @Test
     public void insertShouldReturnUnauthorizedWhenNotValidToken() throws Exception {
-        ReviewDTO reviewDTO = new ReviewDTO();
+        ReviewDto reviewDTO = new ReviewDto();
         reviewDTO.setText("Gostei do filme!");
         reviewDTO.setMovieId(1L);
 
@@ -66,7 +66,7 @@ public class ReviewResourceIT {
     public void insertShouldReturnForbiddenWhenVisitorAuthenticated() throws Exception {
         String accessToken = tokenUtil.obtainAccessToken(mockMvc, visitorUsername, visitorPassword);
 
-        ReviewDTO reviewDTO = new ReviewDTO();
+        ReviewDto reviewDTO = new ReviewDto();
         reviewDTO.setText("Gostei do filme!");
         reviewDTO.setMovieId(1L);
 
@@ -89,7 +89,7 @@ public class ReviewResourceIT {
         String reviewText = "Gostei do filme!";
         long movieId = 1L;
 
-        ReviewDTO reviewDTO = new ReviewDTO();
+        ReviewDto reviewDTO = new ReviewDto();
         reviewDTO.setText(reviewText);
         reviewDTO.setMovieId(movieId);
 
@@ -118,7 +118,7 @@ public class ReviewResourceIT {
     public void insertShouldReturnUnproccessableEntityWhenMemberAuthenticatedAndInvalidData() throws Exception {
         String accessToken = tokenUtil.obtainAccessToken(mockMvc, memberUsername, memberPassword);
 
-        ReviewDTO reviewDTO = new ReviewDTO();
+        ReviewDto reviewDTO = new ReviewDto();
         reviewDTO.setText("        ");
         reviewDTO.setMovieId(1L);
 
